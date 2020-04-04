@@ -33,7 +33,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SearchAdapter.SearchAdapterListener {
+public class MainActivity extends AppCompatActivity  implements SearchAdapter.SearchAdapterListener{
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView recyclerView;
     private List<SearchItem> searchList;
@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.Sea
     private SearchView searchView;
 
     // url to fetch contacts json
-    private static final String URL = "http://localhost/Android/cars.json";
+    //private static final String URL = "https://drive.google.com/open?id=1x-KFBqozZ8h0g4Gkatfc1tVF5lUNWW3g";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+       setSupportActionBar(toolbar);
 
         // toolbar fancy stuff
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.Sea
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        fetchContacts();
+        fetchSearchItems();
     }
 
-    private void fetchContacts() {
-        JsonArrayRequest request = new JsonArrayRequest(URL,
+    private void fetchSearchItems() {
+        JsonArrayRequest request = new JsonArrayRequest("",
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
