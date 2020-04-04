@@ -1,3 +1,5 @@
+package com.example.searchfilterapp;
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.Sea
     private SearchView searchView;
 
     // url to fetch contacts json
-    private static final String URL = "https://api.androidhive.info/json/contacts.json";
+    private static final String URL = "http://localhost/Android/cars.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
