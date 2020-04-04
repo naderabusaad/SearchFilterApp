@@ -1,5 +1,3 @@
-package com.example.searchfilterapp;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -41,13 +39,32 @@ public class MainActivity extends AppCompatActivity implements SearchAdapter.Sea
     private SearchView searchView;
 
     // url to fetch contacts json
-    private static final String URL = "http://localhost/Android/cars.json";
+    private static final String URL = "https://api.androidhive.info/json/contacts.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        // toolbar fancy stuff
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.toolbar_title);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        searchList = new ArrayList<>();
+        mAdapter = new SearchAdapter(this, searchList, this);
+
+        // white background notification bar
+        whiteNotificationBar(recyclerView);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        fetchContacts();
     }
 
     private void fetchContacts() {
